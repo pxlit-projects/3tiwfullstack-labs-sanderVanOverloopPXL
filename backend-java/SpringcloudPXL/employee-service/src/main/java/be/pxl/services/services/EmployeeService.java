@@ -5,6 +5,7 @@ import be.pxl.services.controller.Exception.NotFoundException;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.repositories.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class EmployeeService implements IEmployeeService{
+
 
     private final EmployeeRepository employeeRepository;
 
