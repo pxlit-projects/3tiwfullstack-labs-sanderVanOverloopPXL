@@ -34,17 +34,17 @@ public class EmplpoyeeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<EmployeeDTO> findById(long id){
+    public ResponseEntity<EmployeeDTO> findById(@RequestParam long id){
         return new ResponseEntity<EmployeeDTO>(employeeService.getById(id), HttpStatus.FOUND);
     }
 
     @GetMapping("/department/{departmentId}")
-    public ResponseEntity<List<EmployeeDTO>> findByDepartment(long departmentId){
+    public ResponseEntity<List<EmployeeDTO>> findByDepartment(@RequestParam long departmentId){
         return new ResponseEntity<List<EmployeeDTO>>(employeeService.findByDepartment(departmentId), HttpStatus.FOUND);
     }
 
     @GetMapping("/organization/{organizationId}")
-    public ResponseEntity<List<EmployeeDTO>> findByOrganization(long organizationId){
+    public ResponseEntity<List<EmployeeDTO>> findByOrganization(@RequestParam long organizationId){
         return new ResponseEntity<List<EmployeeDTO>>(employeeService.findByOrganization(organizationId), HttpStatus.FOUND);
     }
 }
