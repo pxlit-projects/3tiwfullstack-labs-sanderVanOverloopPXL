@@ -1,14 +1,13 @@
 package be.pxl.services.controller;
 
+import be.pxl.services.controller.DTO.EmployeeDTO;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.services.IEmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +24,27 @@ public class EmplpoyeeController {
 
     @GetMapping
     public ResponseEntity<List<Employee>> getEmployees(){
-        return new ResponseEntity<>(employeeService.getAllEmployees(), HttpStatus.OK);
+        return new ResponseEntity<List<Employee>>(employeeService.getAllEmployees(), HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> postEmployee(@RequestBody EmployeeDTO employee){
+        employeeService.postEmployee(employee);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployeeDTO> findById(long id){
+        return new ResponseEntity<EmployeeDTO>(employeeService.getById(id), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/department/{departmentId}")
+    public ResponseEntity<List<EmployeeDTO>> findByDepartment(long departmentId){
+        return new ResponseEntity<List<EmployeeDTO>>(employeeService.findByDepartment(departmentId), HttpStatus.FOUND);
+    }
+
+    @GetMapping("/organization/{organizationId}")
+    public ResponseEntity<List<EmployeeDTO>> findByOrganization(long organizationId){
+        return new ResponseEntity<List<EmployeeDTO>>(employeeService.findByOrganization(organizationId), HttpStatus.FOUND);
     }
 }

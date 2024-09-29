@@ -7,29 +7,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>organization-service</artifactId>
+    <artifactId>notification-service</artifactId>
     <packaging>jar</packaging>
 
-    <name>organization-service</name>
+    <name>notification-service</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>be.pxl.services</groupId>
-            <artifactId>employee-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>be.pxl.services</groupId>
-            <artifactId>department-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
 
 
 </project>
