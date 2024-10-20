@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  productcatalogueservice-db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'productcatalogueservice_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'heelgeheimwachtwoord'
+      MYSQL_ROOT_PASSWORD: 'heelgeheimwachtwoord'
+    ports:
+      - '3310:3306'
+    volumes:
+      - productcatalogueservice-db:/var/lib/mysql
+
+  shoppingcartservice-db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'shoppingcartservice_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'heelgeheimwachtwoord'
+      MYSQL_ROOT_PASSWORD: 'heelgeheimwachtwoord'
+    ports:
+      - '3311:3306'
+    volumes:
+      - shoppingcartservice-db:/var/lib/mysql
+
+  loggingservice-db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'loggingservice_db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'heelgeheimwachtwoord'
+      MYSQL_ROOT_PASSWORD: 'heelgeheimwachtwoord'
+    ports:
+      - '3312:3306'
+    volumes:
+      - loggingservice-db:/var/lib/mysql
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    restart: always
+    ports:
+      - "5672:5672" # RabbitMQ main port
+      - "15672:15672" # RabbitMQ management plugin port
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
+
+
+
+# Names our volume
+volumes:
+  productcatalogueservice-db:
+  shoppingcartservice-db:
+  loggingservice-db:
+  rabbitmq-data:
