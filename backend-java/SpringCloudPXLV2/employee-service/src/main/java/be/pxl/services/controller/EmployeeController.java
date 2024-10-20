@@ -28,7 +28,12 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<Void> postEmployee(@RequestBody EmployeeDTO employee){
-        System.out.println("hello");
+        if (employee == null){
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
+        if (employee.getName() == null || employee.getName().isEmpty()){
+            return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+        }
         employeeService.postEmployee(employee);
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }

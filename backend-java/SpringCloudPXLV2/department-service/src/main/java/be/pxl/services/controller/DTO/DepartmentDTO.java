@@ -16,11 +16,13 @@ public class DepartmentDTO {
     private String name;
     private List<Employee> employees;
     private String position;
+    private long id;
 
     public DepartmentDTO(Department department){
         this.organizationId = department.getOrganizationId();
         this.name = department.getName();
         this.employees = department.getEmployees();
         this.position = department.getPosition();
+        this.id = department.getId();
     }
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employee")
+@RequestMapping("/api/department")
 @RequiredArgsConstructor
 public class DepartmentController {
 
@@ -23,7 +23,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DepartmentDTO> findById(@RequestParam long id){
+    public ResponseEntity<DepartmentDTO> findById(@PathVariable long id){
         return new ResponseEntity<DepartmentDTO>(service.findById(id), HttpStatus.FOUND);
     }
 
@@ -33,12 +33,12 @@ public class DepartmentController {
     }
 
     @GetMapping("/organization/{organizationId}")
-    public ResponseEntity<List<DepartmentDTO>> findByOrganization(@RequestParam long organizationId ){
+    public ResponseEntity<List<DepartmentDTO>> findByOrganization(@PathVariable long organizationId ){
         return new ResponseEntity<List<DepartmentDTO>>(service.findByOrganization(organizationId), HttpStatus.OK);
     }
 
     @GetMapping("/organization/{organizationId}/with-employees")
-    public ResponseEntity<Void> findByOrganizationWithEmployees(@RequestParam long organizationId){
+    public ResponseEntity<Void> findByOrganizationWithEmployees(@PathVariable long organizationId){
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
