@@ -4,11 +4,9 @@ import be.pxl.services.controller.DTO.OrganizationDTO;
 import be.pxl.services.domain.Organization;
 
 public interface IOrganizationService {
-    OrganizationDTO findById(Long id);
+    OrganizationDTO findByOrganizationId(Long id);
 
-    OrganizationDTO findByIdWithDepartments(Long id);
-
-    OrganizationDTO findByIdWithDepartmentsAndEmployees(Long id);
-
-    OrganizationDTO findByIdWithEmployees(Long id);
+    OrganizationDTO findOrganizationByIdWithDepartments(Long id);
+    OrganizationDTO findOrganizationByIdWithDepartmentsAndEmployees(Long id);
+    OrganizationDTO findOrganizationByIdWithEmployees(Long id);
 }

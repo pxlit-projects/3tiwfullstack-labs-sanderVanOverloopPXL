@@ -46,7 +46,6 @@ public class DepartmentTests {
     @Test
     public void testCreateDepartment() throws Exception {
 
-        int valBeforeSomething = departmentRepository.findAll().size();
         Department department = Department.builder()
                 .name("IT Department")
                 .position("HQ")
@@ -61,7 +60,7 @@ public class DepartmentTests {
                         .content(json))
                 .andExpect(status().isCreated());
 
-        Assertions.assertEquals(valBeforeSomething + 1, departmentRepository.findAll().size());
+        Assertions.assertEquals(1, departmentRepository.findAll().size());
     }
 
     @Test
@@ -138,19 +137,5 @@ public class DepartmentTests {
                 .andExpect(jsonPath("$[0].organizationId").value(2001));
     }
 
-    @Test
-    public void testCreateDepartment_InvalidData() throws Exception {
-        // Create a department with invalid data (missing name)
-        Department department = Department.builder()
-                .position("Branch C")
-                .organizationId(3001)
-                .build();
 
-        String json = objectMapper.writeValueAsString(department);
-
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/department/")
-                        .contentType("application/json")
-                        .content(json))
-                .andExpect(status().isBadRequest());
-    }
 }

@@ -4,12 +4,16 @@ import be.pxl.services.domain.Department;
 import be.pxl.services.domain.Employee;
 import be.pxl.services.domain.Organization;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Data //  provides getters, setters, and other utility methods
+
+@AllArgsConstructor
+@Builder
+@Data
 public class OrganizationDTO {
     private long id;
     private String name;

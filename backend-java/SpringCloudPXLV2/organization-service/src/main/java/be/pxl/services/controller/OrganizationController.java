@@ -20,7 +20,7 @@ public class OrganizationController {
 
     @GetMapping("/{id}")
     public OrganizationDTO findById(@PathVariable Long id) {
-        return organizationService.findById(id);
+        return organizationService.findByOrganizationId(id);
     }
 
     @GetMapping("/{id}/with-departments")
