@@ -1,9 +1,11 @@
 package be.pxl.services.services;
 
 
+import be.pxl.services.client.NotificationClient;
 import be.pxl.services.controller.DTO.EmployeeDTO;
 import be.pxl.services.controller.Exception.NotFoundException;
 import be.pxl.services.domain.Employee;
+import be.pxl.services.model.NotificationRequest;
 import be.pxl.services.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +18,14 @@ public class EmployeeService implements IEmployeeService {
 
 
     private final EmployeeRepository employeeRepository;
+    private final NotificationClient notificationClient;
 
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
     public void postEmployee(EmployeeDTO employee) {
-        if (employee == null){
+        if (employee == null) {
             throw new NotFoundException("Employee is null");
         }
 
@@ -34,12 +37,16 @@ public class EmployeeService implements IEmployeeService {
         newEmployee.setOrganizationId(employee.getOrganizationId());
 
         employeeRepository.save(newEmployee);
+
+        NotificationRequest notificationRequest = NotificationRequest.builder().message("Employee Created").sender("ikke").build();
+        notificationClient.sendNotification(notificationRequest);
+
     }
 
 
     public EmployeeDTO getById(final long id) {
         Employee existingEmployee = employeeRepository.findEmployeeById(id);
-        if (existingEmployee == null){
+        if (existingEmployee == null) {
             throw new NotFoundException("no employee with such ID " + id);
         }
 

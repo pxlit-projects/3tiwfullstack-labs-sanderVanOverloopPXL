@@ -25,16 +25,16 @@ public class OrganizationController {
 
     @GetMapping("/{id}/with-departments")
     public OrganizationDTO findByIdWithDepartments(@PathVariable Long id) {
-        return null;
+        return organizationService.findOrganizationByIdWithDepartments(id);
     }
 
     @GetMapping("/{id}/with-departments-and-employees")
     public OrganizationDTO findByIdWithDepartmentsAndEmployees(@PathVariable Long id) {
-        return null;
+        return organizationService.findOrganizationByIdWithDepartmentsAndEmployees(id);
     }
 
     @GetMapping("/{id}/with-employees")
     public OrganizationDTO findByIdWithEmployees(@PathVariable Long id) {
-        return null;
+        return organizationService.findOrganizationByIdWithEmployees(id);
     }
 }
