@@ -4,6 +4,7 @@ import be.pxl.services.controller.DTO.OrganizationDTO;
 import be.pxl.services.domain.Organization;
 import be.pxl.services.repository.OrganizationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class OrganizationService implements IOrganizationService {
 
 
+    @Autowired
     private OrganizationRepository organizationRepository;
 
     @Override
@@ -45,8 +47,7 @@ public class OrganizationService implements IOrganizationService {
         }
 
         Organization foundOrganization = organization.get();
-        foundOrganization.getDepartments();
-        foundOrganization.getEmployees();
+
 
         return mapToOrganizationDTO(foundOrganization);    }
 
@@ -59,7 +60,6 @@ public class OrganizationService implements IOrganizationService {
         }
 
         Organization foundOrganization = organization.get();
-        foundOrganization.getEmployees();
 
         return mapToOrganizationDTO(foundOrganization);
     }
