@@ -40,11 +40,21 @@ services:
     volumes:
       - organizationservice-db:/var/lib/mysql
 
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    restart: always
+    ports:
+      - "5672:5672" # RabbitMQ main port
+      - "15672:15672" # RabbitMQ management plugin port
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+
 
 volumes:
   employeeservice-db:
   departmentservice-db:
   organizationservice-db:
+  rabbitmq-data:
 
 
 
